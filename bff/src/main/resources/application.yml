@@ -1,0 +1,30 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: bff
+
+# Validación del JWT emitido por Microsoft Entra External ID
+pedidos360:
+  security:
+    issuer-uri: ${IDAAS_ISSUER:}
+    jwk-set-uri: ${IDAAS_JWKS_URI:}
+    audiences: ${IDAAS_AUDIENCE:}
+    # Solo para desarrollo local; en AWS el CORS lo maneja el API Gateway
+    cors-allowed-origins: ${CORS_ALLOWED_ORIGINS:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+# URLs internas de los microservicios (en EC2 normalmente http://localhost:808x o la IP privada)
+servicios:
+  productos-url: ${PRODUCTOS_URL:http://localhost:8081}
+  clientes-url: ${CLIENTES_URL:http://localhost:8082}
+  pedidos-url: ${PEDIDOS_URL:http://localhost:8083}

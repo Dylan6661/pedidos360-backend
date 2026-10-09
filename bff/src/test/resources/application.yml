@@ -1,0 +1,10 @@
+pedidos360:
+  security:
+    issuer-uri: https://test-tenant.ciamlogin.com/test-tenant/v2.0
+    jwk-set-uri: https://test-tenant.ciamlogin.com/test-tenant/discovery/v2.0/keys
+    audiences: test-api-client-id
+
+servicios:
+  productos-url: http://localhost:18081
+  clientes-url: http://localhost:18082
+  pedidos-url: http://localhost:18083

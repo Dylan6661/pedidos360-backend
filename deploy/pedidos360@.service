@@ -1,0 +1,22 @@
+# Unidad systemd plantilla: un servicio por microservicio.
+#   sudo systemctl enable --now pedidos360@ms-productos
+#   sudo systemctl enable --now pedidos360@ms-clientes
+#   sudo systemctl enable --now pedidos360@ms-pedidos
+#   sudo systemctl enable --now pedidos360@bff
+[Unit]
+Description=Pedidos360 - %i
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ec2-user
+WorkingDirectory=/opt/pedidos360
+EnvironmentFile=/etc/pedidos360/pedidos360.env
+EnvironmentFile=-/etc/pedidos360/%i.env
+ExecStart=/usr/bin/java -Xms128m -Xmx256m -jar /opt/pedidos360/%i.jar
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

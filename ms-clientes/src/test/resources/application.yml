@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+
+pedidos360:
+  seed-data: false
+  security:
+    issuer-uri: https://test-tenant.ciamlogin.com/test-tenant/v2.0
+    jwk-set-uri: https://test-tenant.ciamlogin.com/test-tenant/discovery/v2.0/keys
+    audiences: test-api-client-id
